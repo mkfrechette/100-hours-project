@@ -1,39 +1,23 @@
 const bcrypt = require("bcrypt");
 const mongoose = require("mongoose");
 
-const UserSchema = new mongoose.Schema({
+const StylistSchema = new mongoose.Schema({
   userName: { type: String, unique: true },
   email: { type: String, unique: true },
   password: String,
-  _stylist: {type: mongoose.Schema.Types.ObjectId, ref:'Stylist'},
-  _model: {type: mongoose.Schema.Types.ObjectId, ref:'Model'}
+  location: String,
+  bio: String,
+  lookingFor: String,
+  modelPlan: String,
+  twitter: String,
+  instagram: String,
+  facebook: String,
 });
 
-const StylistSchema = new mongoose.Schema({
-  location: String,
-  bio: String,
-  lookingFor: String,
-  modelPlan: String,
-  twitter: String,
-  instagram: String,
-  facebook: String,
-});
-const ModelSchema = new mongoose.Schema({
-  location: String,
-  bio: String,
-  lookingFor: String,
-  modelPlan: String,
-  heat: String,
-  products: String,
-  travel: String,
-  twitter: String,
-  instagram: String,
-  facebook: String,
-});
 
 // Password hash middleware.
 
-UserSchema.pre("save", function save(next) {
+StylistSchema.pre("save", function save(next) {
   const user = this;
   if (!user.isModified("password")) {
     return next();
@@ -54,7 +38,7 @@ UserSchema.pre("save", function save(next) {
 
 // Helper method for validating user's password.
 
-UserSchema.methods.comparePassword = function comparePassword(
+StylistSchema.methods.comparePassword = function comparePassword(
   candidatePassword,
   cb
 ) {
@@ -63,4 +47,4 @@ UserSchema.methods.comparePassword = function comparePassword(
   });
 };
 
-module.exports = mongoose.model("User", UserSchema);
+module.exports = mongoose.model("Stylist", StylistSchema);

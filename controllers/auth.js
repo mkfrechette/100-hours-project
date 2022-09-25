@@ -1,6 +1,8 @@
 const passport = require("passport");
 const validator = require("validator");
 const User = require("../models/User");
+const StylistSchema = require("../models/StylistSchema");
+const ModelSchema = require("../models/ModelSchema");
 
 exports.getLogin = (req, res) => {
   if (req.user) {
@@ -84,13 +86,20 @@ exports.postSignup = (req, res, next) => {
     gmail_remove_dots: false,
   });
 
-  const user = new User({
+  const stylistUser = new StylistSchema({
     userName: req.body.userName,
     email: req.body.email,
     password: req.body.password,
+    location: req.body.location,
+    bio: req.body.bio,
+    lookingFor: req.body.lookingFor,
+    modelPlan: req.body.modelPlan,
+    twitter: req.body.twitter,
+    instagram: req.body.instagram,
+    facebook: req.body.facebook,
   });
 
-  User.findOne(
+  StylistSchema.findOne(
     { $or: [{ email: req.body.email }, { userName: req.body.userName }] },
     (err, existingUser) => {
       if (err) {
@@ -102,11 +111,52 @@ exports.postSignup = (req, res, next) => {
         });
         return res.redirect("../signup");
       }
-      user.save((err) => {
+      stylistUser.save((err) => {
         if (err) {
           return next(err);
         }
-        req.logIn(user, (err) => {
+        req.logIn(stylistUser, (err) => {
+          if (err) {
+            return next(err);
+          }
+          res.redirect("/profile");
+        });
+      });
+    }
+  );
+  const modelUser = new ModelSchema({
+    userName: req.body.userName,
+    email: req.body.email,
+    password: req.body.password,
+    location: req.body.location,
+    bio: req.body.bio,
+    lookingFor: req.body.lookingFor,
+    modelPlan: req.body.modelPlan,
+    heat: req.body.heat,
+    products: req.body.products,
+    travel: req.body.travel,
+    twitter: req.body.twitter,
+    instagram: req.body.instagram,
+    facebook: req.body.facebook,
+  });
+
+  ModelSchema.findOne(
+    { $or: [{ email: req.body.email }, { userName: req.body.userName }] },
+    (err, existingUser) => {
+      if (err) {
+        return next(err);
+      }
+      if (existingUser) {
+        req.flash("errors", {
+          msg: "Account with that email address or username already exists.",
+        });
+        return res.redirect("../signup");
+      }
+      modelUser.save((err) => {
+        if (err) {
+          return next(err);
+        }
+        req.logIn(modelUser, (err) => {
           if (err) {
             return next(err);
           }
