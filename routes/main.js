@@ -13,6 +13,12 @@ router.get("/login", authController.getLogin);
 router.post("/login", authController.postLogin);
 router.get("/logout", authController.logout);
 router.get("/signup", authController.getSignup);
-router.post("/signup", authController.postSignup);
+/*router.post("/signup", authController.postSignup);*/
+
+
+router.post("/signup/stylist", authController.postStylistSignup);
+
+
+router.post("/signup/model", authController.postModelSignup);
 
 module.exports = router;
