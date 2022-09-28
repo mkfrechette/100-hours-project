@@ -7,7 +7,7 @@ const Stylist = require ('../models/StylistSchema')
 module.exports = function (passport) {
   passport.use(
     new LocalStrategy({ usernameField: "email" }, (email, password, done) => {
-      Model.findOne({ email: email.toLowerCase() }, (err, user) => {
+      const user = Model.findOne({ email: email.toLowerCase() }, (err, user) => {
         if (err) {
           return done(err);
         }
@@ -38,7 +38,7 @@ module.exports = function (passport) {
           
           //return done(null, false, { msg: `Email ${email} not found.` });
         }
-        
+
         if (!user.password) {
           return done(null, false, {
             msg:

@@ -15,7 +15,11 @@ const postRoutes = require("./routes/posts");
 require("dotenv").config({ path: "./config/.env" });
 
 // Passport config
-require("./config/passport")(passport);
+//require("./config/passport")(passport);
+const modelPassport = require("./config/model-passport")
+const stylistPassport = require("./config/stylist-passport")
+modelPassport(passport)
+stylistPassport(passport)
 
 //Connect To Database
 connectDB();
