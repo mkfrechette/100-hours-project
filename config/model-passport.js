@@ -22,7 +22,7 @@ module.exports = function (passport) {
         user.comparePassword(password, (err, isMatch) => {
           if (err) {
             return done(err);
-          }
+          } 
           if (isMatch) {
             return done(null, user);
           }
