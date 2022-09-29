@@ -1,6 +1,8 @@
 const LocalStrategy = require("passport-local").Strategy;
 const mongoose = require("mongoose");
 const Stylist = require("../models/StylistSchema");
+const Model = require("../models/ModelSchema");
+
 module.exports = function (passport) {
   passport.use('stylist',
     new LocalStrategy({ usernameField: "email" }, (email, password, done) => {
@@ -34,7 +36,21 @@ module.exports = function (passport) {
     done(null, user.id);
   });
 
-  passport.deserializeUser((id, done) => {
+  /*passport.deserializeUser((id, done) => {
     Stylist.findById(id, (err, user) => done(err, user));
-  });
-}; 
+  });*/
+
+  passport.deserializeUser(function(id, done){
+    Model.findById(id, function(err, user){
+      if(err) done(err);
+        if(user){
+          done(null, user);
+        } else {
+           Stylist.findById(id, function(err, user){
+           if(err) done(err);
+           done(null, user);
+        })
+    }
+ });
+  
+})}; 

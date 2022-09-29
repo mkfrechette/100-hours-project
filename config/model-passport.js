@@ -1,6 +1,7 @@
 const LocalStrategy = require("passport-local").Strategy;
 const mongoose = require("mongoose");
 const Model = require("../models/ModelSchema");
+const Stylist = require("../models/StylistSchema");
 
 
 module.exports = function (passport) {
@@ -36,7 +37,21 @@ module.exports = function (passport) {
     done(null, user.id);
   });
 
-  passport.deserializeUser((id, done) => {
+  /*passport.deserializeUser((id, done) => {
     Model.findById(id, (err, user) => done(err, user));
-  });
-}; 
+  });*/
+
+  passport.deserializeUser(function(id, done){
+    Model.findById(id, function(err, user){
+      if(err) done(err);
+        if(user){
+          done(null, user);
+        } else {
+           Stylist.findById(id, function(err, user){
+           if(err) done(err);
+           done(null, user);
+        })
+    }
+ });
+  
+})}; 
