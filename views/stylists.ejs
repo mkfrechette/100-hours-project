@@ -1,0 +1,38 @@
+<%- include('partials/header') -%>
+
+<h1> Hello Stylists </h1>
+
+<a href="/profile/stylist">Back to Profile</a>
+
+
+<section class="pt-4">
+            
+    <div class="container px-lg-5">
+        <!-- Page Features-->
+        
+        <div class="row gx-lg-5">
+            <% stylists.forEach( el => { %>  
+            <div class="col-lg-6 col-xxl-4 mb-5" data-id='<%=el._id%>'>
+                <div class="card bg-light border-0 h-100">
+                    <div class="card-body text-center p-4 p-lg-5 pt-0 pt-lg-0">
+                        <div class="feature bg-primary bg-gradient text-white rounded-3 mb-4 mt-n4" ><i class="bi bi-collection"></i></div>
+                        <!--<a href="/ingredients/<%= el.recipeName %>">-->
+                            <h2 class="fs-4 fw-bold" ><%= el.userName %></h2>
+                           </a>
+                            <p class="h6"><%=el.location%></p>
+                            <p class="h6"><%=el.lookingFor%></p>
+                            <p class="h6"><%=el.modelPlan%></p>
+                            
+                            <!-- <p class="mb-0" style="padding-bottom: 1%;">Recipe</p> -->
+                        <!--<span ><i class="fa fa-trash fa-lg del" aria-hidden="true"></i></span>
+                        <span class='del'> Delete </span>-->
+                    </div>
+                </div>
+            </div>
+            <% }) %>
+        </div> 
+    </div>
+</section>
+
+
+<%- include('partials/footer') -%>
