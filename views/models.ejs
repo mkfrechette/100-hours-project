@@ -1,0 +1,93 @@
+<%- include('partials/header') -%>
+
+<div>
+  <div class="jumbotron">
+    <div class="container">
+      <h1 class="title display-3 text-center" style="font-weight: 100">
+        Meet the<strong style="font-weight: 600"> Models</strong>
+      </h1>
+      <p class="lead string-1 text-center">
+        Let's introduce you to the Hair Models, and possibly your new canvas
+      </p>
+    </div>
+  </div>
+</div>
+
+<section class="container">
+  <div class="row">
+    <% models.forEach( el => { %>
+    <div class="col-lg-4 col-md-6 mb-4">
+      <div
+        class="card card-cascade text-white"
+        style="
+          background: linear-gradient(
+            rgba(182, 113, 203, 0.4),
+            rgba(116, 109, 184, 0.45)
+          );
+        "
+      >
+        <div class="view view-cascade overlay">
+          <img
+            class="card-img-top"
+            src="/imgs/averie-woodard-4nulm-JUYFo-unsplash.jpg"
+          />
+          <a>
+            <div class="mask rgba-white-slight waves-effect waves-light"></div>
+          </a>
+        </div>
+        <div class="card-body card-body-cascade text-center">
+          <h4 class="card-title"><strong><%= el.userName %></strong></h4>
+          <h6 class="font-weight-bold indigo-text py-2"><%=el.location%></h6>
+          <p class="card-text"><%=el.bio%></p>
+          <div class="pull-left">
+            <ul class="list-group list-group-flush">
+              <li class="list-group-item">Looking for <%= el.lookingFor %></li>
+              <li class="list-group-item">
+                As a model, I'm willing to <%= el.modelPlan %>
+              </li>
+              <li class="list-group-item">
+                I use heat on my hair <%= el.heat %>
+              </li>
+              <li class="list-group-item">
+                The products I use: <%= el.products %>
+              </li>
+              <li class="list-group-item">
+                Will travel <%= el.travel %> to meet a stylist
+              </li>
+            </ul>
+          </div>
+          <a
+            href="<%=el.facebook%>"
+            type="button"
+            class="btn-floating btn-small btn-fb waves-effect waves-light"
+          >
+            <i class="fab fa-facebook-f">
+              <!--::before-->
+            </i>
+          </a>
+          <a
+            href="<%=el.instagram%>"
+            type="button"
+            class="btn-floating btn-small btn-ig waves-effect waves-light"
+          >
+            <i class="fab fa-instagram">
+              <!--::before-->
+            </i>
+          </a>
+          <a
+            href="<%=el.twitter%>"
+            type="button"
+            class="btn-floating btn-small btn-tw waves-effect waves-light"
+          >
+            <i class="fab fa-twitter">
+              <!--::before-->
+            </i>
+          </a>
+        </div>
+      </div>
+    </div>
+    <% }) %>
+  </div>
+</section>
+
+<%- include('partials/footer') -%>
