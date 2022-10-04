@@ -1,38 +1,84 @@
 <%- include('partials/header') -%>
 
-<h1> Hello Stylists </h1>
-
-<a href="/profile/stylist">Back to Profile</a>
-
-
-<section class="pt-4">
-            
-    <div class="container px-lg-5">
-        <!-- Page Features-->
-        
-        <div class="row gx-lg-5">
-            <% stylists.forEach( el => { %>  
-            <div class="col-lg-6 col-xxl-4 mb-5" data-id='<%=el._id%>'>
-                <div class="card bg-light border-0 h-100">
-                    <div class="card-body text-center p-4 p-lg-5 pt-0 pt-lg-0">
-                        <div class="feature bg-primary bg-gradient text-white rounded-3 mb-4 mt-n4" ><i class="bi bi-collection"></i></div>
-                        <!--<a href="/ingredients/<%= el.recipeName %>">-->
-                            <h2 class="fs-4 fw-bold" ><%= el.userName %></h2>
-                           </a>
-                            <p class="h6"><%=el.location%></p>
-                            <p class="h6"><%=el.lookingFor%></p>
-                            <p class="h6"><%=el.modelPlan%></p>
-                            
-                            <!-- <p class="mb-0" style="padding-bottom: 1%;">Recipe</p> -->
-                        <!--<span ><i class="fa fa-trash fa-lg del" aria-hidden="true"></i></span>
-                        <span class='del'> Delete </span>-->
-                    </div>
-                </div>
-            </div>
-            <% }) %>
-        </div> 
+<div>
+  <div class="jumbotron">
+    <div class="container">
+      <h1 class="title display-3 text-center" style="font-weight: 100">
+        Meet the<strong style="font-weight: 600"> Stylists</strong>
+      </h1>
+      <p class="lead string-1 text-center">
+        Let's introduce you to the Hair Stylists, and possibly your next
+        appointment
+      </p>
     </div>
+  </div>
+</div>
+
+<section class="container">
+  <div class="row">
+    <% stylists.forEach( el => { %>
+    <div class="col-lg-4 col-md-6 mb-4">
+      <div
+        class="card card-cascade text-white"
+        style="
+          background: linear-gradient(
+            rgba(182, 113, 203, 0.4),
+            rgba(116, 109, 184, 0.45)
+          );
+        "
+      >
+        <div class="view view-cascade overlay">
+          <img
+            class="card-img-top"
+            src="imgs/adam-winger-WXmHwPcFamo-unsplash.jpg"
+          />
+          <a>
+            <div class="mask rgba-white-slight waves-effect waves-light"></div>
+          </a>
+        </div>
+        <div class="card-body card-body-cascade text-center">
+          <h4 class="card-title"><strong><%= el.userName %></strong></h4>
+          <h6 class="font-weight-bold indigo-text py-2"><%=el.location%></h6>
+          <p class="card-text"><%=el.bio%></p>
+          <div class="pull-left">
+            <ul class="list-group list-group-flush">
+              <li class="list-group-item">Looking for <%= el.lookingFor %></li>
+              <li class="list-group-item">
+                As a Stylist, I'm looking to <%= el.modelPlan %>
+              </li>
+            </ul>
+          </div>
+          <a
+            href="<%=el.facebook%>"
+            type="button"
+            class="btn btn-primary btn-floating m-1"
+          >
+            <i class="fab fa-facebook-f">
+              <!--::before-->
+            </i>
+          </a>
+          <a
+            href="<%=el.instagram%>"
+            type="button"
+            class="btn btn-primary btn-floating m-1"
+          >
+            <i class="fab fa-instagram">
+              <!--::before-->
+            </i>
+          </a>
+          <a
+            href="<%=el.twitter%>"
+            type="button"
+            class="btn btn-primary btn-floating m-1"
+          >
+            <i class="fab fa-twitter">
+              <!--::before-->
+            </i>
+          </a>
+        </div>
+      </div>
+    </div>
+    <% }) %>
+  </div>
 </section>
-
-
 <%- include('partials/footer') -%>
