@@ -2,19 +2,9 @@
 
 Our mission is to provide an easy to use, accessible online platform for hair stylists and hair models to connect. A space to showcase and explore your creative side as you connect with stylists and models interested in collaboration. We'll help you forge personal friendships and professional relationships in your local community.
 
-![alt tag](http://placecorgi.com/1200/650)
-c:\Users\mkfre\Pictures\index1.png
-c:\Users\mkfre\Pictures\index2.png
-c:\Users\mkfre\Pictures\signup.png
-c:\Users\mkfre\Pictures\login.png
-c:\Users\mkfre\Pictures\models.png
-c:\Users\mkfre\Pictures\stylists.png
-
 ## How It's Made:
 
 **Tech used:** HTML, CSS, JavaScript, Express, MongoDB, Ejs, Bootstrap 5
-
-Here's where you can go to town on how you actually built this thing. Write as much as you can here, it's totally fine if it's not too much just make sure you write _something_. If you don't have too much experience on your resume working on the front end that's totally fine. This is where you can really show off your passion and make up for that ten fold.
 
 ## Why I Built This
 
@@ -27,6 +17,13 @@ A user can sign up as either a stylist or a model, with different questions to a
 ## Lessons Learned:
 
 Creating two types of users via two collections in the database was easy, authenticating them through Passport.js was not! Learning how to do this was a great (and greatly frustrating) experience.
+
+![alt tag](https://i.postimg.cc/FKbxBP2X/index1.png)
+![alt tag](https://i.postimg.cc/9FnVDbg2/index2.png)
+![alt tag](https://i.postimg.cc/TYpvvmd4/signup.png)
+![alt tag](https://i.postimg.cc/8CGYcrGD/login.png)
+![alt tag](https://i.postimg.cc/XvxsvHxc/models.png)
+![alt tag](https://i.postimg.cc/mrdKngxs/stylists.png)
 
 # Install
 
