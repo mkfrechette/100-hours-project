@@ -18,11 +18,20 @@ A user can sign up as either a stylist or a model, with different questions to a
 
 Creating two types of users via two collections in the database was easy, authenticating them through Passport.js was not! Learning how to do this was a great (and greatly frustrating) experience.
 
+**Home Page**
 ![alt tag](https://i.postimg.cc/FKbxBP2X/index1.png)
 ![alt tag](https://i.postimg.cc/9FnVDbg2/index2.png)
+
+**Signup Page**
 ![alt tag](https://i.postimg.cc/TYpvvmd4/signup.png)
+
+**Login Page**
 ![alt tag](https://i.postimg.cc/8CGYcrGD/login.png)
+
+**Models Page**
 ![alt tag](https://i.postimg.cc/XvxsvHxc/models.png)
+
+**Stylists Page**
 ![alt tag](https://i.postimg.cc/mrdKngxs/stylists.png)
 
 # Install
