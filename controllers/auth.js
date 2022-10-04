@@ -4,14 +4,69 @@ const User = require("../models/User");
 const StylistSchema = require("../models/StylistSchema");
 const ModelSchema = require("../models/ModelSchema");
 
-exports.getLogin = (req, res) => {
+exports.getLogin = async (req, res) => {
   if (req.user) {
-    return res.redirect("/profile");
+    const user = req.user.userName;
+    const model = await ModelSchema.findOne({ userName: user }).lean();
+    const stylist = await StylistSchema.findOne({ userName: user }).lean();
+    if (model) {
+      return res.redirect("/profile/model");
+    } else if (stylist) {
+      return res.redirect("/profile/stylist");
+    }
   }
   res.render("login", {
     title: "Login",
   });
 };
+
+/*exports.getLogin = (req, res) => {
+  if (req.user.travel) {
+    return res.redirect("/profile/model");
+  } else if (req.user.howLong) {
+    return res.redirect("/profile/stylist");
+  } else {
+    return res.render("login", {
+      title: "Login",
+    });
+  }
+};*/
+
+/*exports.getLogin = (req, res) => {
+  if (StylistSchema.findOne(req.user)) {
+    return res.redirect("/profile/stylist");
+  } else if (ModelSchema.findOne(req.user)) {
+    return res.redirect("/profile/model");
+  } else {
+    return res.redirect("/login");
+  }
+  res.render("login", {
+    title: "Login",
+  });
+};*/
+
+/*exports.getLogin = (req, res) => {
+  StylistSchema.findOne(
+    { $or: [{ email: req.body.email }, { userName: req.body.userName }] },
+    (err, existingUser) => {
+      if (err) {
+        ModelSchema.findOne(
+          { $or: [{ email: req.body.email }, { userName: req.body.userName }] },
+          (err, existingUser) => {
+            if (err) {
+              return res.redirect("/login");
+            }
+            if (existingUser) {
+              return res.redirect("/profile/model");
+            };
+      }
+      if (existingUser) {
+        return res.redirect("/profile/stylist");
+      }
+  res.render("login", {
+    title: "Login",
+  });
+;*/
 
 exports.postLoginModel = (req, res, next) => {
   const validationErrors = [];
@@ -27,7 +82,6 @@ exports.postLoginModel = (req, res, next) => {
   req.body.email = validator.normalizeEmail(req.body.email, {
     gmail_remove_dots: false,
   });
-
 
   //passport.authenticate("model", (err, user, info) => {
   passport.authenticate("model", (err, user, info) => {
@@ -48,7 +102,6 @@ exports.postLoginModel = (req, res, next) => {
   })(req, res, next);
 };
 
-
 //TEST postLoginStylist
 
 exports.postLoginStylist = (req, res, next) => {
@@ -65,7 +118,6 @@ exports.postLoginStylist = (req, res, next) => {
   req.body.email = validator.normalizeEmail(req.body.email, {
     gmail_remove_dots: false,
   });
-
 
   //passport.authenticate("model", (err, user, info) => {
   passport.authenticate("stylist", (err, user, info) => {
@@ -84,7 +136,7 @@ exports.postLoginStylist = (req, res, next) => {
       res.redirect(req.session.returnTo || "/profile/stylist");
     });
   })(req, res, next);
-/*TEST FOR STYLIST - was "local" before
+  /*TEST FOR STYLIST - was "local" before
   passport.authenticate("stylist", (err, user, info) => {
     if (err) {
       return next(err);
@@ -103,11 +155,10 @@ exports.postLoginStylist = (req, res, next) => {
   })(req, res, next);*/
 };
 
-
 exports.logout = (req, res) => {
   req.logout(() => {
-    console.log('User has logged out.')
-  })
+    console.log("User has logged out.");
+  });
   req.session.destroy((err) => {
     if (err)
       console.log("Error : Failed to destroy the session during logout.", err);
@@ -116,9 +167,16 @@ exports.logout = (req, res) => {
   });
 };
 
-exports.getSignup = (req, res) => {
+exports.getSignup = async (req, res) => {
   if (req.user) {
-    return res.redirect("/profile");
+    const user = req.user.userName;
+    const model = await ModelSchema.findOne({ userName: user }).lean();
+    const stylist = await StylistSchema.findOne({ userName: user }).lean();
+    if (model) {
+      return res.redirect("/profile/model");
+    } else if (stylist) {
+      return res.redirect("/profile/stylist");
+    }
   }
   res.render("signup", {
     title: "Create Account",
@@ -184,13 +242,6 @@ exports.postStylistSignup = (req, res, next) => {
   );
 };
 
-
-
-
-
-
-
-
 exports.postModelSignup = (req, res, next) => {
   const validationErrors = [];
   if (!validator.isEmail(req.body.email))
@@ -210,7 +261,6 @@ exports.postModelSignup = (req, res, next) => {
     gmail_remove_dots: false,
   });
 
-  
   const modelUser = new ModelSchema({
     userName: req.body.userName,
     email: req.body.email,

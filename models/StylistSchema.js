@@ -12,8 +12,8 @@ const StylistSchema = new mongoose.Schema({
   twitter: String,
   instagram: String,
   facebook: String,
+  howLong: String,
 });
-
 
 // Password hash middleware.
 
