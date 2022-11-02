@@ -1,5 +1,7 @@
 const cloudinary = require("../middleware/cloudinary");
 const Post = require("../models/Post");
+const StylistSchema = require("../models/StylistSchema");
+const ModelSchema = require("../models/ModelSchema");
 
 module.exports = {
   getProfile: async (req, res) => {
@@ -40,7 +42,15 @@ module.exports = {
         user: req.user.id,
       });
       console.log("Post has been added!");
-      res.redirect("/profile");
+      const user = req.user.userName;
+      const model = await ModelSchema.findOne({ userName: user }).lean();
+      const stylist = await StylistSchema.findOne({ userName: user }).lean();
+      if (model) {
+        return res.redirect("/profile/model");
+      } else if (stylist) {
+        return res.redirect("/profile/stylist");
+      }
+      //res.redirect("/profile");
     } catch (err) {
       console.log(err);
     }

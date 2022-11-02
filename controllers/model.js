@@ -1,7 +1,8 @@
+const cloudinary = require("../middleware/cloudinary");
 const Model = require("../models/ModelSchema");
 
 module.exports = {
-getModels: async (req, res) => {
+  getModels: async (req, res) => {
     try {
       const models = await Model.find().sort({ createdAt: "desc" }).lean();
       res.render("models.ejs", { models: models });
@@ -9,4 +10,4 @@ getModels: async (req, res) => {
       console.log(err);
     }
   },
-}
+};
