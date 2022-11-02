@@ -1,7 +1,8 @@
+const cloudinary = require("../middleware/cloudinary");
 const Stylist = require("../models/StylistSchema");
 
 module.exports = {
-getStylists: async (req, res) => {
+  getStylists: async (req, res) => {
     try {
       const stylists = await Stylist.find().sort({ createdAt: "desc" }).lean();
       res.render("stylists.ejs", { stylists: stylists });
@@ -9,4 +10,4 @@ getStylists: async (req, res) => {
       console.log(err);
     }
   },
-}
+};
