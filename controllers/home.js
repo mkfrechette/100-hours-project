@@ -1,9 +1,17 @@
+const Model = require("../models/ModelSchema");
+const Stylist = require("../models/StylistSchema");
+
 module.exports = {
-  getIndex: (req, res) => {
-    res.render("index.ejs");
+  getIndex: async (req, res) => {
+    try {
+      const model = await Model.find().sort({ createdAt: "desc" }).lean();
+      const stylist = await Stylist.find().sort({ createdAt: "desc" }).lean();
+      res.render("index.ejs", { model: model, stylist: stylist });
+    } catch (err) {
+      console.log(err);
+    }
   },
 };
-
 
 /*passport.use("model",
     new LocalStrategy({ usernameField: "email" }, (email, password, done) => {

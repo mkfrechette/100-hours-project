@@ -265,6 +265,8 @@ exports.postModelSignup = (req, res, next) => {
     userName: req.body.userName,
     email: req.body.email,
     password: req.body.password,
+    image: req.body.image,
+    cloudinaryId: req.body.cloudinaryId,
     location: req.body.location,
     bio: req.body.bio,
     lookingFor: req.body.lookingFor,

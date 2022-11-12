@@ -3,12 +3,37 @@
   <div class="row mt-5">
       <div class="col-6">
           <div>
-              <a href="/stylists">Stylists</a>
-              <a href="/models">Models</a>
+
               <p><strong>User Name</strong>: <%= user.userName %></p>
               <p><strong>Email</strong>: <%= user.email %></p>
-              <a href="/logout" class="col-3 btn btn-primary">Logout</a>
+              
           </div>
+          <!--Profile Picture-->
+          <% if (proPic[0] == null) { %>
+            
+            <div class="mt-5">
+              <h2>Upload a Profile Picture</h2>
+              <form action="/proPic/createProPic" enctype="multipart/form-data" method="POST">
+                <div class="mb-3">
+                  <label for="imgUpload" class="form-label">Profile Picture</label>
+                  <input type="file" class="form-control" id="imageUpload" name="file">
+                </div>
+                <button type="submit" class="btn btn-primary" value="Upload">Submit</button>
+              </form>
+            </div>
+        </div>
+            <%} else { %>
+              <div class="col-6 justify-content-between mt-5">
+                
+                <img class="img-fluid" src="<%= proPic[0].image%>">
+              
+            </div>
+            <% } %>
+              
+            
+          <!--Form for Profile Picture-->
+         
+          <!---->
           <div class="mt-5">
             <h2>Add a post</h2>
             <form action="/post/createPost" enctype="multipart/form-data" method="POST">

@@ -6,6 +6,9 @@ const postsController = require("../controllers/posts");
 const stylistController = require('../controllers/stylist');
 const modelController = require('../controllers/model');
 const { ensureAuth, ensureGuest, ensureAuthModel, ensureAuthStylist } = require("../middleware/auth");
+const proPicController = require("../controllers/proPic");
+
+
 
 //Main Route
 router.get("/", homeController.getIndex);

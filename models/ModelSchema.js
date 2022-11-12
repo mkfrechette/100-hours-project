@@ -4,6 +4,10 @@ const mongoose = require("mongoose");
 const ModelSchema = new mongoose.Schema({
   userName: { type: String, unique: true },
   email: { type: String, unique: true },
+  user: {
+    type: mongoose.Schema.Types.ObjectId,
+    ref: "User",
+  },
   password: String,
   location: String,
   bio: String,

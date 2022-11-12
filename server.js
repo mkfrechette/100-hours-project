@@ -10,16 +10,16 @@ const logger = require("morgan");
 const connectDB = require("./config/database");
 const mainRoutes = require("./routes/main");
 const postRoutes = require("./routes/posts");
-
+const proPicRoutes = require("./routes/proPic");
 //Use .env file in config folder
 require("dotenv").config({ path: "./config/.env" });
 
 // Passport config
 //require("./config/passport")(passport);
-const modelPassport = require("./config/model-passport")
-const stylistPassport = require("./config/stylist-passport")
-modelPassport(passport)
-stylistPassport(passport)
+const modelPassport = require("./config/model-passport");
+const stylistPassport = require("./config/stylist-passport");
+modelPassport(passport);
+stylistPassport(passport);
 
 //Connect To Database
 connectDB();
@@ -60,6 +60,7 @@ app.use(flash());
 //Setup Routes For Which The Server Is Listening
 app.use("/", mainRoutes);
 app.use("/post", postRoutes);
+app.use("/proPic", proPicRoutes);
 
 //Server Running
 app.listen(process.env.PORT, () => {

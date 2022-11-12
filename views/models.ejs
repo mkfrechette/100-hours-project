@@ -27,10 +27,14 @@
         "
       >
         <div class="view view-cascade overlay">
+          <% if (proPic.user == models.id) { %>
+          <img class="card-img-top" src="<%= proPic[0].image%>" />
+          <%} else { %>
           <img
             class="card-img-top"
-            src="/imgs/averie-woodard-4nulm-JUYFo-unsplash.jpg"
+            src="imgs/averie-woodard-4nulm-JUYFo-unsplash.jpg"
           />
+          <% } %>
           <a>
             <div class="mask rgba-white-slight waves-effect waves-light"></div>
           </a>
