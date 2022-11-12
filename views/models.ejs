@@ -15,7 +15,7 @@
 
 <section class="container">
   <div class="row">
-    <% models.forEach( el => { %>
+    <% models.forEach( (el,i) => { %>
     <div class="col-lg-4 col-md-6 mb-4">
       <div
         class="card card-cascade text-white"
@@ -27,8 +27,11 @@
         "
       >
         <div class="view view-cascade overlay">
-          <% if (proPic.user == models.id) { %>
-          <img class="card-img-top" src="<%= proPic[0].image%>" />
+          <% if (modelProfile[modelId.modelId[i]]) { %>
+          <img
+            class="card-img-top"
+            src="<%= modelProfile[modelId.modelId[i]].image%>"
+          />
           <%} else { %>
           <img
             class="card-img-top"
