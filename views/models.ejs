@@ -15,7 +15,7 @@
 
 <section class="container">
   <div class="row">
-    <% models.forEach( (el,i) => { %>
+    <% models.forEach((el,i) => { %>
     <div class="col-lg-4 col-md-6 mb-4">
       <div
         class="card card-cascade text-white"
@@ -27,22 +27,24 @@
         "
       >
         <div class="view view-cascade overlay">
-          <% if (modelProfile[modelId.modelId[i]]) { %>
-          <img
-            class="card-img-top"
-            src="<%= modelProfile[modelId.modelId[i]].image%>"
-          />
-          <%} else { %>
-          <img
-            class="card-img-top"
-            src="imgs/averie-woodard-4nulm-JUYFo-unsplash.jpg"
-          />
-          <% } %>
+          <% if (modelProfile[el.userName]) { %>
+            <img
+              class="card-img-top"
+              src="<%= proPic[i].image%>"
+            />
+            <%} else { %>
+            <img
+              class="card-img-top"
+              src="imgs/averie-woodard-4nulm-JUYFo-unsplash.jpg"
+            />
+            <% } %>
+
           <a>
             <div class="mask rgba-white-slight waves-effect waves-light"></div>
           </a>
         </div>
         <div class="card-body card-body-cascade text-center">
+          <p></p>
           <h4 class="card-title"><strong><%= el.userName %></strong></h4>
           <h6 class="font-weight-bold indigo-text py-2"><%=el.location%></h6>
           <p class="card-text"><%=el.bio%></p>
