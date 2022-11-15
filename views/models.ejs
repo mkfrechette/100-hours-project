@@ -15,7 +15,7 @@
 
 <section class="container">
   <div class="row">
-    <% models.forEach((el,i) => { %>
+    <% for(let i = 0; i < models.length; i++) { %>
     <div class="col-lg-4 col-md-6 mb-4">
       <div
         class="card card-cascade text-white"
@@ -27,10 +27,10 @@
         "
       >
         <div class="view view-cascade overlay">
-          <% if (modelProfile[el.userName]) { %>
+          <% if (modelProfile[models[i].userName]) { %>
             <img
               class="card-img-top"
-              src="<%= proPic[i].image%>"
+              src="<%= modelProfile[models[i].userName].image ? modelProfile[models[i].userName].image : '#'%>"
             />
             <%} else { %>
             <img
@@ -45,28 +45,28 @@
         </div>
         <div class="card-body card-body-cascade text-center">
           <p></p>
-          <h4 class="card-title"><strong><%= el.userName %></strong></h4>
-          <h6 class="font-weight-bold indigo-text py-2"><%=el.location%></h6>
-          <p class="card-text"><%=el.bio%></p>
+          <h4 class="card-title"><strong><%= models[i].userName %></strong></h4>
+          <h6 class="font-weight-bold indigo-text py-2"><%=models[i].location%></h6>
+          <p class="card-text"><%=models[i].bio%></p>
           <div class="pull-left">
             <ul class="list-group list-group-flush">
-              <li class="list-group-item">Looking for <%= el.lookingFor %></li>
+              <li class="list-group-item">Looking for <%= models[i].lookingFor %></li>
               <li class="list-group-item">
-                As a model, I'm willing to <%= el.modelPlan %>
+                As a model, I'm willing to <%= models[i].modelPlan %>
               </li>
               <li class="list-group-item">
-                I use heat on my hair <%= el.heat %>
+                I use heat on my hair <%= models[i].heat %>
               </li>
               <li class="list-group-item">
-                The products I use: <%= el.products %>
+                The products I use: <%= models[i].products %>
               </li>
               <li class="list-group-item">
-                Will travel <%= el.travel %> to meet a stylist
+                Will travel <%= models[i].travel %> to meet a stylist
               </li>
             </ul>
           </div>
           <a
-            href="<%=el.facebook%>"
+            href="<%=models[i].facebook%>"
             type="button"
             class="btn btn-primary btn-floating m-1"
           >
@@ -75,7 +75,7 @@
             </i>
           </a>
           <a
-            href="<%=el.instagram%>"
+            href="<%=models[i].instagram%>"
             type="button"
             class="btn btn-primary btn-floating m-1"
           >
@@ -84,7 +84,7 @@
             </i>
           </a>
           <a
-            href="<%=el.twitter%>"
+            href="<%=models[i].twitter%>"
             type="button"
             class="btn btn-primary btn-floating m-1"
           >
@@ -95,7 +95,7 @@
         </div>
       </div>
     </div>
-    <% }) %>
+    <% } %>
   </div>
 </section>
 

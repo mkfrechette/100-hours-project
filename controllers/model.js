@@ -8,11 +8,16 @@ module.exports = {
       const models = await Model.find().sort({ createdAt: "desc" }).lean();
       const modelId = models.map((e) => e._id);
       const proPic = await ProPic.find({ user: { $in: modelId } }).lean();
-      console.log(proPic)
       const usersWithProPics = proPic.map(e => e.user)
       const proPicUsername = await Model.find({  _id: { $in: usersWithProPics} }).lean()
-      console.log(proPicUsername)
+
+      for(let i = 0; i < proPicUsername.length; i++) {
+        proPicUsername[i].image = proPic[i].image
+      }
+   
+      // console.log(proPicUsername)
       const modelProfile = proPicUsername.reduce((a, c) => ({ ...a, [c.userName]: c }), {});
+    
       console.log(modelProfile);
 
       res.render("models.ejs", {

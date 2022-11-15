@@ -57,10 +57,19 @@ app.use(passport.session());
 //Use flash messages for errors, info, ect...
 app.use(flash());
 
+//Res.local
+
+app.use((req, res, next) => {
+  res.locals.user = req.user;
+  next();
+  });
+
 //Setup Routes For Which The Server Is Listening
 app.use("/", mainRoutes);
 app.use("/post", postRoutes);
 app.use("/proPic", proPicRoutes);
+
+
 
 //Server Running
 app.listen(process.env.PORT, () => {
