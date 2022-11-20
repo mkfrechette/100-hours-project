@@ -7,6 +7,7 @@ const stylistController = require('../controllers/stylist');
 const modelController = require('../controllers/model');
 const { ensureAuth, ensureGuest, ensureAuthModel, ensureAuthStylist } = require("../middleware/auth");
 const proPicController = require("../controllers/proPic");
+const publicProfileController = require("../controllers/publicProfile");
 
 
 
@@ -36,6 +37,9 @@ router.get("/models", modelController.getModels)
 
 //Stylist Routes
 router.get("/stylists", stylistController.getStylists)
+
+//Public Profile Routes
+router.get("/profile/user/:userId", publicProfileController.getPublicProfile)
 
 //Old Routes
 

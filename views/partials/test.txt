@@ -1,44 +1,121 @@
-<!-- Links -->
-    <ul class="navbar-nav">
+ <!--Nav for Guest-->
+    <% if (!model.user && !stylist.user){ %>
+     <ul class="navbar-nav">
       <li class="nav-item">
         <a class="nav-link link-secondary" style="font-size:larger;" href="/">Home</a>
       </li>
-      <% if (model.user != null) { %>
-        <li class="nav-item">
-          <a class="nav-link link-secondary" style="font-size:larger;" href="/profile/model">My Profile</a>
-        </li>
-        <%} else if (stylist.user != null) { %>
-          <li class="nav-item">
-            <a class="nav-link link-secondary" style="font-size:larger;" href="/profile/stylist">My Profile</a>
-          </li>
-        <%} else { %>
-        
-        <% } %>
       <li class="nav-item">
         <a class="nav-link link-secondary" style="font-size:larger;" href="/models">Models</a>
       </li>
       <li class="nav-item">
         <a class="nav-link link-secondary" style="font-size:larger;" href="/stylists">Stylists</a>
       </li>
+      
+
+
       <ul class="navbar-nav me-auto" style="margin-left: 30vh;">
-        <% if (model.user == null && stylist.user == null) { %>
         <li class="nav-item">
           <a class="nav-link link-light" style="font-size:larger;" href="/signup">Sign Up</a>
         </li>
-        <% } %>
-        <% if (model.user == null && stylist.user == null) { %>
         <li class="nav-item">
           <a class="nav-link link-light" style="font-size:larger;" href="/login">Login</a>
         </li>
-        <% } %>
-        <% if (model.user != null || stylist.user != null) { %>
+      </ul>
+    </ul>
+    <% } %>
+    <% else if (model.user && !stylist.user){ %>
+    <!--Nav for Logged in Model-->
+    <ul class="navbar-nav">
+      <li class="nav-item">
+        <a class="nav-link link-secondary" style="font-size:larger;" href="/">Home</a>
+      </li>
+        <li class="nav-item">
+          <a class="nav-link link-secondary" style="font-size:larger;" href="/profile/model">My Profile</a>
+        </li>
+      <li class="nav-item">
+        <a class="nav-link link-secondary" style="font-size:larger;" href="/models">Models</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link link-secondary" style="font-size:larger;" href="/stylists">Stylists</a>
+      </li>
+
+      
+      <ul class="navbar-nav me-auto" style="margin-left: 30vh;">
         <li class="nav-item">
           <a class="nav-link link-light" style="font-size:larger;" href="/logout">Logout</a>
         </li>
-        <% } %>
       </ul>
     </ul>
+    <% } %>
+    <% else { %>
+    <!--Nav for Logged in Stylist-->
+    <ul class="navbar-nav">
+      <li class="nav-item">
+        <a class="nav-link link-secondary" style="font-size:larger;" href="/">Home</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link link-secondary" style="font-size:larger;" href="/profile/stylist">My Profile</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link link-secondary" style="font-size:larger;" href="/models">Models</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link link-secondary" style="font-size:larger;" href="/stylists">Stylists</a>
+      </li>
 
+      
+      <ul class="navbar-nav me-auto" style="margin-left: 30vh;">
+        <li class="nav-item">
+          <a class="nav-link link-light" style="font-size:larger;" href="/logout">Logout</a>
+        </li>
+      </ul>
+    </ul>
+  </div>
+</nav>
+<% } %>
+
+
+
+
+
+
+
+<!--Default Nav-->
+ 
+    <ul class="navbar-nav">
+      <li class="nav-item">
+        <a class="nav-link link-secondary" style="font-size:larger;" href="/">Home</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link link-secondary" style="font-size:larger;" href="/profile/model">My Profile</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link link-secondary" style="font-size:larger;" href="/profile/stylist">My Profile</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link link-secondary" style="font-size:larger;" href="/models">Models</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link link-secondary" style="font-size:larger;" href="/stylists">Stylists</a>
+      </li>
+      
+
+
+      <ul class="navbar-nav me-auto" style="margin-left: 30vh;">
+        <li class="nav-item">
+          <a class="nav-link link-light" style="font-size:larger;" href="/signup">Sign Up</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link link-light" style="font-size:larger;" href="/login">Login</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link link-light" style="font-size:larger;" href="/logout">Logout</a>
+        </li>
+      </ul>
+    </ul>
+   
+  </div>
+</nav>
 
 
 
