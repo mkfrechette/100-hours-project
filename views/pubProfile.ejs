@@ -1,39 +1,88 @@
 <%- include('partials/header') -%>
-<div class="container">
+<!--Profile Jumbotron-->
+<div>
+  <div class="profile-jumbotron">
+    <div class="container">
+      <h1 class="title display-3 text-center pt-5" style="font-weight: 100">
+        Meet<strong style="font-weight: 600"> <%= profile.userName %> ☀︎</strong>
+      </h1>
+      <p class="lead string-1 text-center">
+        Let's introduce you to your new canvas
+      </p>
+    </div>
+  </div>
+</div>
+<div class="container-fluid" style="padding: 0 20vh 0 20vh;">
   <div class="row mt-5">
-      <div class="col-6">
-          <div>
-
-              <p><strong>User Name</strong>: <%= profile.userName %></p>
-              <p><strong>Email</strong>: <%= profile.email %></p>
-              
-          </div>
-          <!--Profile Picture-->
+    <!--Profile Section-->
+      <div class="col-4">
+          <!--Profile Picture Not Uploaded-->
           <% if (proPic == null) { %>
             
-            <div class="col-6 justify-content-between mt-5">
+            <div class="col-8 justify-content-between mt-5">
                 
-                <img class="img-fluid" src="/imgs/averie-woodard-4nulm-JUYFo-unsplash.jpg">
+                <img class="img-fluid rounded mb-5" src="/imgs/averie-woodard-4nulm-JUYFo-unsplash.jpg">
               
             </div>
+            <!--Profile Picture Uploaded-->
             <%} else { %>
-              <div class="col-6 justify-content-between mt-5">
-                
-                <img class="img-fluid" src="<%= proPic.image%>">
-              
-            </div>
+              <div class=" col-10 justify-content-between mt-5">
+                <div class="card" style="
+                background: linear-gradient(
+                  rgba(182, 113, 203, 0.4),
+                  rgba(116, 109, 184, 0.45)
+                );
+              ">
+                  <img src="<%= proPic.image%>" class="card-img-top" alt="User's uploaded profile picture">
+                  <div class="card-body">
+                    <h5 class="card-title text-center"><strong><%= profile.userName %></strong></h5>
+                    <p class="card-text text-center"><%= profile.bio %></p>
+                    <p class="card-text text-center"><strong><%= profile.location %></strong></p>
+                    <div class="text-center">
+                    <a
+                      href="<%=profile.facebook%>"
+                      type="button"
+                      class="btn btn-primary btn-floating m-1"
+                    >
+                      <i class="fab fa-facebook-f">
+                      </i>
+                    </a>
+                    <a
+                      href="<%=profile.instagram%>"
+                      type="button"
+                      class="btn btn-primary btn-floating m-1"
+                    >
+                      <i class="fab fa-instagram">
+                      </i>
+                    </a>
+                    <a
+                      href="<%=profile.twitter%>"
+                      type="button"
+                      class="btn btn-primary btn-floating m-1"
+                    >
+                      <i class="fab fa-twitter">
+                      </i>
+                    </a>
+                    </div>
+                  </div>
+                  <ul class="list-group list-group-flush">
+                    <li class="list-group-item">I'm looking for <%= profile.lookingFor %></li>
+                    <li class="list-group-item">I'm looking for <%= profile.modelPlan %></li>
+                    <li class="list-group-item">I use heat on my hair <%= profile.heat %></li>
+                    <li class="list-group-item">Products I use:  <%= profile.products %></li>
+                    <li class="list-group-item">I'm willing to travel <%= profile.travel %></li>
+                    
+                  </ul>
+                  
+                </div>
+              </div>
             <% } %>
-              
-            
-          <!--Form for Profile Picture-->
-         
-          <!---->
-          
       </div>
-      <div class="col-6">
+      <!--Posts Section-->
+      <div class="col-8">
         <ul class="row list-unstyled">
         <% for(var i=0; i<posts.length; i++) {%>
-          <li class="col-6 justify-content-between mt-5">
+          <li class="col-4 justify-content-between mt-5">
             <a href="/post/<%= posts[i]._id%>">
               <img class="img-fluid" src="<%= posts[i].image%>">
             </a>
@@ -41,7 +90,7 @@
         <% } %>
         </ul>
         <div class="row justify-content-center mt-5">
-          <a class="btn btn-primary" href="/feed">Return to Feed</a>
+          <a class="btn btn-primary" href="/models">Return to Models</a>
         </div>  
       </div>  
     </div>

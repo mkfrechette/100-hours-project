@@ -23,18 +23,18 @@
           background: linear-gradient(
             rgba(182, 113, 203, 0.4),
             rgba(116, 109, 184, 0.45)
-          );
+          ); height: 48rem;
         "
       >
         <div class="view view-cascade overlay">
           <% if (modelProfile[models[i].userName]) { %>
             <img
-              class="card-img-top"
+              class="card-img-top card-image"
               src="<%= modelProfile[models[i].userName].image ? modelProfile[models[i].userName].image : '#'%>"
             />
             <%} else { %>
             <img
-              class="card-img-top"
+              class="card-img-top card-image"
               src="imgs/averie-woodard-4nulm-JUYFo-unsplash.jpg"
             />
             <% } %>
@@ -54,7 +54,7 @@
               <li class="list-group-item">
                 As a model, I'm willing to <%= models[i].modelPlan %>
               </li>
-              <li class="list-group-item">
+              <!--<li class="list-group-item">
                 I use heat on my hair <%= models[i].heat %>
               </li>
               <li class="list-group-item">
@@ -62,9 +62,10 @@
               </li>
               <li class="list-group-item">
                 Will travel <%= models[i].travel %> to meet a stylist
-              </li>
+              </li>-->
             </ul>
           </div>
+          <div style="padding-top: 2rem;">
           <a
             href="<%=models[i].facebook%>"
             type="button"
@@ -92,6 +93,7 @@
               <!--::before-->
             </i>
           </a>
+          </div>
         </div>
       </div>
     </div>
