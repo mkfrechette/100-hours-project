@@ -7,7 +7,11 @@
         Meet<strong style="font-weight: 600"> <%= profile.userName %> ☀︎</strong>
       </h1>
       <p class="lead string-1 text-center">
-        Let's introduce you to your new canvas
+        <% if (profile.heat == null) { %>
+        Let's introduce you to your new stylist
+        <%} else { %>
+          Let's introduce you to your new canvas
+          <% } %>
       </p>
     </div>
   </div>
@@ -65,20 +69,52 @@
                     </a>
                     </div>
                   </div>
+                  <!--If the profile is a Stylist-->
+                  <% if (profile.heat == null) { %>
                   <ul class="list-group list-group-flush">
-                    <li class="list-group-item">I'm looking for <%= profile.lookingFor %></li>
-                    <li class="list-group-item">I'm looking for <%= profile.modelPlan %></li>
-                    <li class="list-group-item">I use heat on my hair <%= profile.heat %></li>
-                    <li class="list-group-item">Products I use:  <%= profile.products %></li>
-                    <li class="list-group-item">I'm willing to travel <%= profile.travel %></li>
+                    <li class="list-group-item">✀ I'm looking for <%= profile.lookingFor.toLowerCase() %></li>
+                    <li class="list-group-item">✂ My plan for the model is <%= profile.modelPlan.toLowerCase() %></li>
+                    <li class="list-group-item">✃ I'm looking for a model with <%= profile.howLong.toLowerCase() %> length hair</li>
                     
                   </ul>
-                  
+                  <%} else { %>
+                    <!--If the profile is a Model-->
+                    <ul class="list-group list-group-flush">
+                      <li class="list-group-item">🔍︎ I'm looking for <%= profile.lookingFor.toLowerCase() %></li>
+                      <li class="list-group-item">✂ I'm willing to <%= profile.modelPlan.toLowerCase() %></li>
+                      <li class="list-group-item">I use heat on my hair <%= profile.heat.toLowerCase() %></li>
+                      <li class="list-group-item">Products I use:  <%= profile.products.toLowerCase() %></li>
+                      <li class="list-group-item">I'm willing to travel <%= profile.travel.toLowerCase() %></li>
+                      
+                    </ul>
+                    <% } %>
                 </div>
               </div>
             <% } %>
       </div>
       <!--Posts Section-->
+      <% if (posts.length == 0) { %>
+        <div class="col-8">
+          <div class="no-posts  mt-5">
+            <div>
+              <h1 class="title display-3 text-center pt-3" style="font-weight: 100">
+                No Posts Yet
+              </h1>
+              <p class="lead string-1-noPosts text-center">
+                Come Back Later
+              </p>
+            </div>
+          </div>
+          <!-- Return Button -->
+          <div class="row justify-content-center mt-5">
+            <% if (profile.heat == null) { %>
+            <a class="btn btn-primary" href="/models">Return to Stylists</a>
+            <%} else { %>
+              <a class="btn btn-primary" href="/models">Return to Models</a>
+              <% } %>
+          </div>  
+        </div>
+        <%} else { %>
       <div class="col-8">
         <ul class="row list-unstyled">
         <% for(var i=0; i<posts.length; i++) {%>
@@ -89,9 +125,10 @@
           </li>
         <% } %>
         </ul>
-        <div class="row justify-content-center mt-5">
-          <a class="btn btn-primary" href="/models">Return to Models</a>
-        </div>  
+        <% } %>
+        
+        
+        
       </div>  
     </div>
   </div>

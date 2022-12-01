@@ -16,7 +16,7 @@
 
 <section class="container">
   <div class="row">
-    <% stylists.forEach( el => { %>
+    <% for(let i = 0; i < stylists.length; i++) { %>
     <div class="col-lg-4 col-md-6 mb-4">
       <div
         class="card card-cascade text-white"
@@ -24,10 +24,27 @@
           background: linear-gradient(
             rgba(182, 113, 203, 0.4),
             rgba(116, 109, 184, 0.45)
-          );
+          );  height: 48rem;
         "
       >
-        <div class="view view-cascade overlay">
+      <div class="view view-cascade overlay">
+        <% if (stylistProfile[stylists[i].userName]) { %>
+          <a href="/profile/user/<%= stylists[i].userName %>"><img
+            class="card-img-top card-image"
+            src="<%= stylistProfile[stylists[i].userName].image ? stylistProfile[stylists[i].userName].image : '#'%>"
+          /></a>
+          <%} else { %>
+            <a href="/profile/user/<%= stylists[i].userName %>"><img
+            class="card-img-top card-image"
+            src="imgs/adam-winger-WXmHwPcFamo-unsplash.jpg"
+          /></a>
+          <% } %>
+
+        <a>
+          <div class="mask rgba-white-slight waves-effect waves-light"></div>
+        </a>
+      </div>
+        <!--<div class="view view-cascade overlay">
           <img
             class="card-img-top"
             src="imgs/adam-winger-WXmHwPcFamo-unsplash.jpg"
@@ -35,21 +52,23 @@
           <a>
             <div class="mask rgba-white-slight waves-effect waves-light"></div>
           </a>
-        </div>
+        </div>-->
         <div class="card-body card-body-cascade text-center">
-          <h4 class="card-title"><strong><%= el.userName %></strong></h4>
-          <h6 class="font-weight-bold indigo-text py-2"><%=el.location%></h6>
-          <p class="card-text"><%=el.bio%></p>
+          <h4 class="card-title" "><strong><a style="color: rgba(116, 109, 184, 0.45)" href="/profile/user/<%= stylists[i].userName %>" ><%= stylists[i].userName %></a></strong></h4>
+          <h6 class="font-weight-bold indigo-text py-2"><%=stylists[i].location%></h6>
+          <p class="card-text"><%=stylists[i].bio%></p>
           <div class="pull-left">
             <ul class="list-group list-group-flush">
-              <li class="list-group-item">Looking for <%= el.lookingFor %></li>
+              <li class="list-group-item">Looking for <%= stylists[i].lookingFor %></li>
               <li class="list-group-item">
-                As a Stylist, I'm looking to <%= el.modelPlan %>
+                As a Stylist, I'm looking to <%= stylists[i].modelPlan %>
               </li>
             </ul>
           </div>
+
+          <div style="padding-top: 2rem;">
           <a
-            href="<%=el.facebook%>"
+            href="<%=stylists[i].facebook%>"
             type="button"
             class="btn btn-primary btn-floating m-1"
           >
@@ -58,7 +77,7 @@
             </i>
           </a>
           <a
-            href="<%=el.instagram%>"
+            href="<%=stylists[i].instagram%>"
             type="button"
             class="btn btn-primary btn-floating m-1"
           >
@@ -67,7 +86,7 @@
             </i>
           </a>
           <a
-            href="<%=el.twitter%>"
+            href="<%=stylists[i].twitter%>"
             type="button"
             class="btn btn-primary btn-floating m-1"
           >
@@ -76,9 +95,10 @@
             </i>
           </a>
         </div>
+        </div>
       </div>
     </div>
-    <% }) %>
+    <% } %>
   </div>
 </section>
 <%- include('partials/footer') -%>

@@ -68,6 +68,7 @@ app.use((req, res, next) => {
 app.use("/", mainRoutes);
 app.use("/post", postRoutes);
 app.use("/proPic", proPicRoutes);
+app.use("/profile", mainRoutes);
 
 
 

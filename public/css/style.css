@@ -59,3 +59,23 @@ margin-bottom: 4vh;
 br{
   margin:20px;
 }
+
+/*User With No Posts - Public Profile*/
+
+.no-posts{
+background: 
+linear-gradient(
+    rgba(182, 113, 203, 0.4),
+    rgba(116, 109, 184, 0.45)
+  );
+color: white !important;
+height:15vh;
+
+}
+.string-1-noPosts{
+  padding-top:30px;
+  width:20vh;
+  margin:0 auto;
+  font-weight:100;
+  margin-top:-35px;
+}
